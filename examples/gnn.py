@@ -22,7 +22,7 @@ def load_model(save_pth, args, tasks, hyperparams):
     raise ValueError('Unexpected dataset: {}'.format(args['dataset']))
 
   if args['featurizer'] == 'GC':
-    number_atom_features = 30
+    number_atom_features = 34 # add 4 for curvatures from 30
 
   if args['model'] == 'GCN':
     model = dc.models.GCNModel(
@@ -186,6 +186,12 @@ if __name__ == '__main__':
       default='GCN',
       help='Options include 1) Graph Convolutional Network (GCN) (default: GCN)'
   )
+  parser.add_argument(
+      '-g',
+      '--geometric',
+      choices=['curvature','normals','none'],
+      default='none',
+      help='Options include 1) node curvatures (curvature), 2) node normals (normals), and 3) none (default: none)')
   parser.add_argument(
       '-f',
       '--featurizer',
