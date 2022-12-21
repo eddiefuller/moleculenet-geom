@@ -25,11 +25,11 @@ def load_model(save_pth, args, tasks, hyperparams):
     number_atom_features = 35 # add 4 for curvatures and 1 for diffusion eigenvalue to original 30
     
   if args['geometry'] == 'curvature':
-    use_geom = 'curvature'
+    use_geom = True   #'curvature'
   elif args['geometry'] == 'normals':
-    use_geom = 'normals'
+    use_geom = True   #'normals'
   else:
-    use_geom = 'none'
+    use_geom = False  #'none'
     
   if args['diffusion'] == 'True':
     use_diff = True
