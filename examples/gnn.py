@@ -198,7 +198,7 @@ if __name__ == '__main__':
   )
   parser.add_argument(
       '-g',
-      '--geometric',
+      '--geometry',
       choices=['curvature','normals','none'],
       default='none',
       help='Options include 1) node curvatures (curvature), 2) node normals (normals), and 3) none (default: none)')
