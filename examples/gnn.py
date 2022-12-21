@@ -22,7 +22,17 @@ def load_model(save_pth, args, tasks, hyperparams):
     raise ValueError('Unexpected dataset: {}'.format(args['dataset']))
 
   if args['featurizer'] == 'GC':
-    number_atom_features = 34 # add 4 for curvatures from 30
+    number_atom_features = 35 # add 4 for curvatures and 1 for diffusion eigenvalue to original 30
+    
+  if args['geometry'] == 'curvature':
+    use_geom = 'curvature'
+  elif args['geometry'] == 'normals':
+    use_geom = 'normals'
+  else:
+    use_geom = 'none'
+    
+  if args['diffusion'] == 'True':
+    use_diff = True
 
   if args['model'] == 'GCN':
     model = dc.models.GCNModel(
@@ -192,6 +202,13 @@ if __name__ == '__main__':
       choices=['curvature','normals','none'],
       default='none',
       help='Options include 1) node curvatures (curvature), 2) node normals (normals), and 3) none (default: none)')
+  parser.add_argument(
+      '-di',
+      '--diffusion',
+      choices=['True','False'],
+      type=boolean,
+      default='False',
+      help='Options include 1) True (add diffusion eigenalues) and 2) False (default: do not include)'
   parser.add_argument(
       '-f',
       '--featurizer',
