@@ -31,6 +31,8 @@ def load_model(save_pth, args, tasks, hyperparams):
   else:
     use_geom = False  #'none'
     
+  print("GNN.py call use_geom =",use_geom)
+      
   if args['diffusion'] == 'True':
     use_diff = True
 
