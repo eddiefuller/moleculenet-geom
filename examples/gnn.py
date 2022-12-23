@@ -22,7 +22,7 @@ def load_model(save_pth, args, tasks, hyperparams):
     raise ValueError('Unexpected dataset: {}'.format(args['dataset']))
 
   if args['featurizer'] == 'GC':
-    number_atom_features = 33 # add 3 for normal vectors, 1 for curvatures and 1 for diffusion eigenvalue to original 30
+    number_atom_features = 35 # add 3 for normal vectors, 1 for curvatures and 1 for diffusion eigenvalue to original 30
     
   if args['geometry'] == 'curvature':
     use_geom = True   #'curvature'
